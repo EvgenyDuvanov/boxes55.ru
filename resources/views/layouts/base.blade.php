@@ -63,9 +63,9 @@
 
     .back-one {
         background-image: url('image/mount.jpg');
-        background-size: cover; чтобы изображение занимало всю доступную область
+        background-size: cover;
         background-repeat: no-repeat;
-        background-attachment: fixed; чтобы изображение оставалось фоном при прокрутке
+        background-attachment: fixed;
     }
 
     .half-card {
