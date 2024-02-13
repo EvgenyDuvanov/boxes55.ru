@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-12 half-card">
-        <h3>ВОПРОСЫ - ОТВЕТЫ</h3>
+        <h3>FAQs</h3>
           <div class="accordion" id="accordionExample">
               @foreach($faqs as $faq)
               <div class="accordion-item">
