@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ Route::post('/contacts', [MainController::class, 'submitQwestion'])->name('submi
 // Route::get('/#reviews', [MainController::class, 'showReviews'])->name('page.reviews');
 
 
+//админка
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'indexAdmin']);
+});

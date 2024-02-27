@@ -62,7 +62,7 @@
     }
 
     .back-one {
-        background-image: url('image/mount.jpg');
+        background-image: url('image/road1.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;

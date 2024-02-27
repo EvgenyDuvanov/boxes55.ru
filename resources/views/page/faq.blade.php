@@ -22,7 +22,6 @@
   </div>
 </div>
 
-
 <style>
 .accordion-button:not(.collapsed) {
     background-color: transparent !important;
