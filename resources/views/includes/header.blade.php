@@ -37,7 +37,13 @@
                         </li>
                         <li class="nav-item">
                             <a href="#faq" class="nav-link px-2 text-white" onclick="closeOffcanvas()">FAQ</a>
+                        </li><br>
+                        {{-- <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()"><strong>ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ!</strong></a>
                         </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2" onclick="closeOffcanvas()"><strong>РЕГИСТРАЦИЯ</strong></a>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -52,3 +58,9 @@
         offcanvasInstance.hide();
     }
 </script>
+
+<style>
+    .text-yellow {
+        color: rgb(253, 194, 14);
+    }
+</style>

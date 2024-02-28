@@ -58,11 +58,18 @@
     }
 
     .container-white {
-        margin-bottom: 20px; /* Задайте нужный вам отступ в пикселях */
+        margin-bottom: 20px;
     }
 
     .back-one {
         background-image: url('image/road1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .back-two {
+        background-color: rgba(244, 243, 243, 0.9);
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;

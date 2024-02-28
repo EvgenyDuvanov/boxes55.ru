@@ -14,7 +14,7 @@
         <section id="info" class=" mb-4">@include('page.info')</section>
     </div>
 
-    <div class="back-one">
+    <div class="back-two">
         <div class="container">
             <section id="price" class=" mb-4">@include('page.price')</section>
         </div>
@@ -24,7 +24,7 @@
         <section id="calculate" class=" mb-4">@include('page.calculate')</section>
     </div>
 
-    <div class="back-one">
+    <div class="back-two">
         <div class="container">         
             <section id="application" class=" mb-4">@include('page.application')</section>
         </div>
@@ -34,7 +34,7 @@
         <section id="reviews" class="mb-4 mx-auto">@include('page.reviews')</section>
     </div>
 
-    <div class="back-one">
+    <div class="back-two">
         <div class="container">          
             <section id="contacts" class="mb-4 mx-auto">@include('page.contacts')</section>
         </div>
