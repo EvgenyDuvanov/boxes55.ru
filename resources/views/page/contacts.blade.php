@@ -8,7 +8,13 @@
         <div class="col-md-5">
             <h3>Наши контакты</h3>
             <p>Электронная почта: <a href="mailto:boxes55@mail.ru" class="no-decoration">boxes55@mail.ru</a></p>
-            <p>Телефон для связи: <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a></p>
+            <p>
+                Телефоны для связи:
+                <div> 
+                <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a>
+                <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a>
+                </div>
+            </p>
 
             <div class="text-center">
                 <p>Социальные сети:</p>
@@ -41,7 +47,6 @@
 
         <div class="col-md-4 text-right">
             <h3>Остались вопросы?</h3>
-            {{-- <h5>Мы готовы на них ответить!</h5> --}}
             <p>Оставьте ваш номер телефона и мы перезвоним вам в ближайшее время!</p>
             <div class="text-center">
                 <form method="post" action="{{ route('submit.question') }}">
@@ -53,8 +58,7 @@
                         <input type="text" id="phone" name="phone" class="form-control" placeholder="+7-000-000-0000">
 
                     </div>
-                    <button type="submit" class="btn btn-secondary rounded-pill px-5 mt-2">Отправить!</button><br>
-                    
+                    <button type="submit" class="btn btn-warning rounded-pill px-5 mt-2">Отправить!</button><br>
                 </form>
             </div>
         </div>

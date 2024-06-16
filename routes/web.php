@@ -19,6 +19,6 @@ Route::post('/contacts', [MainController::class, 'submitQwestion'])->name('submi
 
 
 //админка
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'indexAdmin']);
-});
+// Route::prefix('admin')->group(function () {
+//     Route::get('/', [AdminController::class, 'indexAdmin']);
+// });

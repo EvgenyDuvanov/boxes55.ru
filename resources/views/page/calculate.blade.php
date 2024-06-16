@@ -26,9 +26,8 @@
                     <label for="end_date" class="form-label">Дата вашего возвращения:</label>
                     <input type="date" name="end_date" id="end_date" class="form-control">
                 </div>
-                <button type="button" class="btn btn-secondary rounded-pill px-3" onclick="calculateRent()">Рассчитать</button>
                 <button type="button" class="btn btn-danger rounded-pill px-3" onclick="clearCalculator()">Очистить</button>
-
+                <button type="button" class="btn btn-success rounded-pill px-3" onclick="calculateRent()">Рассчитать</button>
             </form>
 
             <div id="results" class="mt-4">

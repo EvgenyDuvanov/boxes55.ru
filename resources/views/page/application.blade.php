@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-secondary rounded-pill px-5 mt-2">Оставить заявку</button><br>
+                <button type="submit" class="btn btn-warning rounded-pill px-5 mt-2">Оставить заявку</button><br>
 
                 <small>Оставляя заявку, Вы соглашаетесь на обработку Ваших персональных данных.</small>
             </form>

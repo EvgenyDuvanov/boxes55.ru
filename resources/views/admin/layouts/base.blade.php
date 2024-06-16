@@ -74,8 +74,6 @@
       padding: 20px;
     }
 
-
-
     .no-decoration {
         text-decoration: none;
         color: inherit;
