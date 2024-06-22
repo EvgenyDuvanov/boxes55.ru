@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row justify-content-center">
-        <!-- Yandex.RTB R-A-9578878-1 -->
         <div id="yandex_rtb_R-A-9578878-1"></div>
         <script>
         window.yaContextCb.push(()=>{
