@@ -31,6 +31,10 @@
     </div>
 
     <div class="container">  
+            <section class="mb-4 mx-auto">@include('page.yandex')</section>
+    </div>
+
+    <div class="container">  
         <section id="reviews" class="mb-4 mx-auto">@include('page.reviews')</section>
     </div>
 
