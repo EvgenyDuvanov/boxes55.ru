@@ -24,6 +24,18 @@
         <section id="calculate" class=" mb-4">@include('page.calculate')</section>
     </div>
 
+    <div>
+        <script>
+        window.yaContextCb.push(()=>{
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-9578878-4",
+                "type": "floorAd",
+                "platform": "touch"
+            })
+        })
+        </script>
+    </div>
+
     <div class="back-two">
         <div class="container">         
             <section id="application" class=" mb-4">@include('page.application')</section>
@@ -45,7 +57,7 @@
     </div>
 
     <div>  
-    @include('page.yandex')
+        @include('page.yandex')
     </div>
 </div>
 
