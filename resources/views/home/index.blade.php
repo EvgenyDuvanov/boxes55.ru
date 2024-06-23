@@ -24,7 +24,7 @@
         <section id="calculate" class=" mb-4">@include('page.calculate')</section>
     </div>
 
-    <div>
+    {{-- <div>
         <script>
         window.yaContextCb.push(()=>{
             Ya.Context.AdvManager.render({
@@ -34,7 +34,7 @@
             })
         })
         </script>
-    </div>
+    </div> --}}
 
     <div class="back-two">
         <div class="container">         
