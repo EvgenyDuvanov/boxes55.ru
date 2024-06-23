@@ -43,9 +43,11 @@
     <div class="container">  
         <section id="faq" class="mb-4 mx-auto">@include('page.faq')</section>
     </div>
+
+    <div>  
+    @include('page.yandex')
+    </div>
 </div>
 
-<div>  
-    @include('page.yandex')
-</div>
+
 @endsection
