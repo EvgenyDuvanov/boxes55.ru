@@ -30,8 +30,8 @@
         </div>
     </div>
 
-    <div class="container">  
-        <section class="mb-4 mx-auto">@include('page.yandex')</section>
+    <div>  
+        @include('page.yandex')
     </div>
 
     <div class="container">  
