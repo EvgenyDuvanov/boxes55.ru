@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MainController::class, 'indexProducts']);
+// Route::redirect('/home', '/');
 
-// Route::get('/#calculate', [MainController::class, 'showCalculator'])->name('page.calculator');
+Route::get('/', [MainController::class, 'indexProducts']);
 
 Route::post('/', [MainController::class, 'calculateRent'])->name('calculate.rent');
 
@@ -15,10 +16,5 @@ Route::post('/application', [MainController::class, 'submitApplication'])->name(
 Route::post('/contacts', [MainController::class, 'submitQwestion'])->name('submit.question');
 
 
-// Route::get('/#reviews', [MainController::class, 'showReviews'])->name('page.reviews');
-
-
-//админка
-// Route::prefix('admin')->group(function () {
-//     Route::get('/', [AdminController::class, 'indexAdmin']);
-// });
+Route::get('review/create', [ReviewController::class, 'create'])->name('review.create');
+Route::post('/review', [ReviewController::class, 'store'])->name('review.store');

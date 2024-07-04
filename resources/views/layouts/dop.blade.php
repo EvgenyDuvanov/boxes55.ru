@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <title>@yield('page.title')</title> 
+
+    
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" >
@@ -15,19 +22,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100;1,900&display=swap" rel="stylesheet">
-
+   
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
     <div class="d-flex flex-column justify-content-between min-vh-100 text-center">
-        @include('includes.header')
+        @include('includes.dop_header')
 
         <main>
            @yield('content') 
         </main>
 
-       @include('includes.footer')
+       @include('includes.dop_footer')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -56,11 +63,18 @@
     }
 
     .container-white {
-        margin-bottom: 20px; /* Задайте нужный вам отступ в пикселях */
+        margin-bottom: 20px;
     }
 
     .back-one {
-        background-image: url('image/mount.jpg');
+        background-image: url('image/road1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .back-two {
+        background-color: rgba(244, 243, 243, 0.9);
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -71,6 +85,8 @@
       border-radius: 25px;
       padding: 20px;
     }
+
+
 
     .no-decoration {
         text-decoration: none;

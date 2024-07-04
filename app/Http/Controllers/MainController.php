@@ -21,9 +21,9 @@ class MainController extends Controller
         $faqs             = Faq::all();
         $sets             = Set::all();
         $products         = Product::all();
-        $publishedReviews = Review::where('published', 1)->get();
+        $reviews = Review::where('published', 1)->get();
         
-        return view('home.index', compact('products', 'publishedReviews', 'sets', 'faqs'));
+        return view('home.index', compact('products', 'reviews', 'sets', 'faqs'));
     }
 
     public function calculateRent(Request $request)
@@ -73,7 +73,7 @@ class MainController extends Controller
 
         $application = Application::create($request->all());
 
-        Mail::to(['evgenysimukhin@gmail.com', 'novokshonovrus@mail.ru'])->send(new ApplicationSubmitted($application));
+        Mail::to(['evgenysimukhin@gmail.com', 'novokshonovrus@mail.ru', 'nnovokshonov@gmail.com', 'boxes55@mail.ru'])->send(new ApplicationSubmitted($application));
 
         return redirect('/#application')->with('success', 'Ваша заявка была успешно отправлена! Мы свяжемся с вами в ближайшее время!');
     }
@@ -87,7 +87,7 @@ class MainController extends Controller
 
         $question = Question::create($request->all());
 
-        Mail::to(['evgenysimukhin@gmail.com', 'novokshonovrus@mail.ru'])->send(new QuestionSubmitted($question));
+        Mail::to(['evgenysimukhin@gmail.com', 'novokshonovrus@mail.ru', 'nnovokshonov@gmail.com', 'boxes55@mail.ru'])->send(new QuestionSubmitted($question));
 
 
         return redirect('/#contacts')->with('success_quest', 'Отлично! Мы перезвоним вам в ближайшее время!');

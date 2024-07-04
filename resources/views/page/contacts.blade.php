@@ -12,7 +12,6 @@
                 Телефоны для связи:
                 <div> 
                 <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a>
-                <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a>
                 </div>
             </p>
 
