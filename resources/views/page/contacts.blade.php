@@ -13,6 +13,9 @@
                 <div> 
                 <a href="tel:+79043286808" class="no-decoration">+7-904-328-68-08</a>
                 </div>
+                <div> 
+                <a href="tel:+79087983553" class="no-decoration">+7-908-798-35-53</a>
+                </div>
             </p>
 
             <div class="text-center">

@@ -75,7 +75,6 @@ class AdminController extends Controller
 
     public function storeReview(Request $request)
     {
-        // Валидация данных формы
         $request->validate([
             'name' => 'required|string|max:255',
             'car_model' => 'required|string|max:255',
@@ -83,32 +82,60 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Загрузка изображения
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('images/reviews'), $imageName);
         }
 
-        // Создание нового отзыва
         Review::create([
             'name' => $request->name,
             'car_model' => $request->car_model,
             'info' => $request->info,
             'image' => 'images/reviews/'.$imageName,
-            'published' => false, // По умолчанию отзыв не опубликован
+            'published' => false,
         ]);
 
         return redirect()->route('admin.review')->with('success', 'Отзыв успешно создан, измените его статус, что бы отзыв появился на сайте!');
     }
 
+    public function editReview(Review $review)
+    {
+        return view('admin.review.edit', compact('review'));
+    }
+
+    public function publishReview(Review $review)
+    {
+        $review->published = true;
+        $review->save();
+
+        return redirect()->route('admin.review')->with('success', 'Отзыв был успешно опубликован!');
+    }
+
+    public function unpublishReview(Review $review)
+    {
+        $review->published = false;
+        $review->save();
+
+        return redirect()->route('admin.review')->with('success', 'Отзыв успешно снят с публикации!');
+    }
+
     public function destroyReview($id)
     {
         $review = Review::findOrFail($id);
+
+        if ($review->image) {
+            $imagePath = public_path($review->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath); // Удаление файла изображения
+            }
+        }
+
         $review->delete();
 
         return redirect()->route('admin.review')->with('success', 'Отзыв был успешно удален!');
     }
+
 
 
 }

@@ -45,12 +45,12 @@ Route::middleware('auth')->group( function () {
         Route::get('/admin/application', [AdminController::class, 'applicationIndex'])->middleware('auth')->name('admin.application');
         Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->middleware('auth')->name('admin.consultanion');
 
+        //работа с отзывами
         Route::get('/admin/review', [AdminController::class, 'reviewIndex'])->name('admin.review');
-
         Route::get('/admin/reviews/create', [AdminController::class, 'createReview'])->name('admin.reviews.create');
         Route::post('/admin/reviews', [AdminController::class, 'storeReview'])->name('admin.review.store');
-
-        Route::get('/admin/review/{review}/edit', [AdminController::class, 'editReview'])->name('admin.review.edit');
+        Route::post('/admin/review/{review}/publish', [AdminController::class, 'publishReview'])->name('review.publish');
+        Route::post('/admin/review/{review}/unpublish', [AdminController::class, 'unpublishReview'])->name('review.unpublish');
         Route::delete('/admin/review/{review}', [AdminController::class, 'destroyReview'])->name('review.destroy');
 
     });
