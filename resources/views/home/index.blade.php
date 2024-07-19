@@ -6,7 +6,7 @@
 <div class="">
     <div class="back-one">
         <div class="container">
-            <section id="main" class="mt- 3mb-5">@include('page.main')</section>
+            <section id="main" class="mt-3 mb-5">@include('page.main')</section>
         </div>
     </div>
 

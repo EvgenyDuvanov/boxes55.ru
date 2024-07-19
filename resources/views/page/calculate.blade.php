@@ -37,9 +37,37 @@
 </div>
 
 <script>
-   function calculateRent() {
+    function calculateRent() {
     var form = document.getElementById('calculateForm');
     var formData = new FormData(form);
+
+    var equipmentId = formData.get('equipment_id');
+    var startDate = formData.get('start_date');
+    var endDate = formData.get('end_date');
+
+    if (!equipmentId || !startDate || !endDate) {
+        alert('Пожалуйста, заполните все поля.');
+        return;
+    }
+
+    var startDateObj = new Date(startDate);
+    var endDateObj = new Date(endDate);
+
+    if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+        alert('Пожалуйста, выберите корректные даты.');
+        return;
+    }
+
+    if (startDateObj > endDateObj) {
+        alert('Дата начала аренды не может быть позже даты возврата.');
+        return;
+    }
+
+    startDateObj.setDate(startDateObj.getDate() + 1);
+    endDateObj.setDate(endDateObj.getDate() + 1);
+
+    formData.set('start_date', startDateObj.toISOString().split('T')[0]);
+    formData.set('end_date', endDateObj.toISOString().split('T')[0]);
 
     fetch(form.action, {
         method: 'POST',
@@ -50,27 +78,19 @@
     })
     .then(response => response.json())
     .then(data => {
-        // Функция для форматирования даты
-        function formatDate(date) {
-            var options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(date).toLocaleDateString('ru-RU', options);
-        }
-
         var resultsDiv = document.getElementById('results');
+
+        var numberOfDays = data.numberOfDays > 0 ? data.numberOfDays : 1;
+        var totalCost = data.totalCost > 0 ? data.totalCost : data.costPerDay;
+
         resultsDiv.innerHTML = `
             <p>${data.item}</p>
-            <p>С ${formatDate(data.startDate)} по ${formatDate(data.endDate)} включительно</p>
-            <p>Количество дней аренды: ${data.numberOfDays}</p>
-            <h3>Общая стоимость: ${data.totalCost} ₽</h3>
+            <p>С ${startDateObj.toLocaleDateString('ru-RU')} по ${endDateObj.toLocaleDateString('ru-RU')} включительно</p>
+            <p>Количество дней (суток) аренды: ${numberOfDays}</p>
+            <h3>Общая стоимость: ${totalCost} ₽</h3>
         `;
     })
     .catch(error => console.error('Error:', error));
 }
 
-    function clearCalculator() {
-        var form = document.getElementById('calculateForm');
-        form.reset();  // Reset the form to clear all inputs
-        var resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = '';  // Clear the results display
-}
 </script>

@@ -27,38 +27,46 @@ class MainController extends Controller
     }
 
     public function calculateRent(Request $request)
-    {
-        $equipmentId = $request->input('equipment_id');
-        $startDate = Carbon::parse($request->input('start_date'));
-        $endDate = Carbon::parse($request->input('end_date'));
+{
+    $equipmentId = $request->input('equipment_id');
+    $startDate = Carbon::parse($request->input('start_date'));
+    $endDate = Carbon::parse($request->input('end_date'));
 
-        $numberOfDays = $endDate->diffInDays($startDate);
-
-        list($type, $itemId) = explode('_', $equipmentId);
-        
-        if ($type === 'product') {
-            $item = Product::find($itemId);
-        } elseif ($type === 'set') {
-            $item = Set::find($itemId);
-        } else {
-            return response()->json(['error' => 'Invalid request']);
-        }
-
-        if ($numberOfDays <= 3) {
-            $totalCost = $numberOfDays * $item->price_3_days;
-        } else {
-            $totalCost = $numberOfDays * $item->price_over_3_days;
-        }
-
-        return response()->json([
-            'item' => $item->name,
-            'type' => $type,
-            'startDate' => $startDate->toDateString(),
-            'endDate' => $endDate->toDateString(),
-            'numberOfDays' => $numberOfDays,
-            'totalCost' => $totalCost,
-        ]);
+    // Calculate number of days
+    $numberOfDays = $endDate->diffInDays($startDate);
+    
+    // Adjust for the case when start_date equals end_date
+    if ($numberOfDays === 0) {
+        $numberOfDays = 1; // At least 1 day of rental
     }
+
+    list($type, $itemId) = explode('_', $equipmentId);
+    
+    if ($type === 'product') {
+        $item = Product::find($itemId);
+    } elseif ($type === 'set') {
+        $item = Set::find($itemId);
+    } else {
+        return response()->json(['error' => 'Invalid request']);
+    }
+
+    // Calculate total cost based on number of days
+    if ($numberOfDays <= 3) {
+        $totalCost = $numberOfDays * $item->price_3_days;
+    } else {
+        $totalCost = $numberOfDays * $item->price_over_3_days;
+    }
+
+    return response()->json([
+        'item' => $item->name,
+        'type' => $type,
+        'startDate' => $startDate->toDateString(),
+        'endDate' => $endDate->toDateString(),
+        'numberOfDays' => $numberOfDays,
+        'totalCost' => $totalCost,
+    ]);
+}
+
 
     public function submitApplication(Request $request)
     {
