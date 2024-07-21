@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Review;
+use App\Models\Set;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,7 +30,62 @@ class AdminController extends Controller
 
     public function productsIndex()
     {
-        return view('admin.products.index');
+        $products = Product::all();
+        $sets = Set::all();
+
+        return view('admin.products.index', compact('products', 'sets'));
+    }
+
+    public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('admin.products.edit', compact('product'));
+    }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'info' => 'nullable|string',
+            'price_3_days' => 'required|numeric',
+            'price_over_3_days' => 'required|numeric',
+        ]);
+
+        $product->name = $request->name;
+        $product->info = $request->info;
+        $product->price_3_days = $request->price_3_days;
+        $product->price_over_3_days = $request->price_over_3_days;
+
+        $product->save();
+
+        return redirect()->route('admin.products')->with('success', 'Изменения в товаре успешно сохранены!');
+    }
+
+    public function editSet($id)
+    {
+        $set = Set::findOrFail($id);
+        return view('admin.sets.edit', compact('set'));
+    }
+
+    public function updateSet(Request $request, $id)
+    {
+        $set = Set::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price_3_days' => 'required|numeric',
+            'price_over_3_days' => 'required|numeric',
+        ]);
+
+        $set->name = $request->name;
+        $set->price_3_days = $request->price_3_days;
+        $set->price_over_3_days = $request->price_over_3_days;
+
+        $set->save();
+
+        return redirect()->route('admin.products')->with('success', 'Изменения в комплекте успешно сохранены!');
     }
 
     public function applicationIndex()
@@ -40,13 +97,6 @@ class AdminController extends Controller
     {
         return view('admin.consultation.index');
     }
-
-    // public function reviewIndex()
-    // {
-    //     $reviews = Review::publishedReviews();
-
-    //     return view('admin.review.index', compact('reviews'));
-    // }
 
     public function reviewIndex(Request $request)
     {
