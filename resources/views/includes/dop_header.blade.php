@@ -33,7 +33,7 @@
                                 <a href="{{ route('admin.application') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Завки на аренду</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.consultanion') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Консультации</a>
+                                <a href="{{ route('admin.consultation') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Консультации</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.review') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Отзывы</a>

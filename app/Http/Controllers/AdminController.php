@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ConsultationStatus;
 use App\Models\Product;
+use App\Models\Question;
 use App\Models\Review;
 use App\Models\Set;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -95,7 +98,37 @@ class AdminController extends Controller
 
     public function consultationIndex()
     {
-        return view('admin.consultation.index');
+        // Get all questions ordered by creation date from newest to oldest
+        $questions = Question::orderBy('created_at', 'desc')->get();
+        return view('admin.consultation.index', compact('questions'));
+    }
+
+    public function editConsultation($id)
+    {
+        $question = Question::findOrFail($id);
+        $statuses = ConsultationStatus::cases();
+        return view('admin.consultation.edit', compact('question', 'statuses'));
+    }
+
+    public function updateConsultation(Request $request, $id)
+    {
+        $question = Question::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'status' => ['required', Rule::in(array_keys(ConsultationStatus::select()))], // Проверка наличия в статусах
+            'comment' => 'nullable|string',
+        ]);
+
+        $question->name = $request->name;
+        $question->phone = $request->phone;
+        $question->status = $request->status; // Присваиваем значение, которое является строкой
+        $question->comment = $request->comment;
+
+        $question->save();
+
+        return redirect()->route('admin.consultation')->with('success', 'Заявка успешно обновлена');
     }
 
     public function reviewIndex(Request $request)

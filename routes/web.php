@@ -37,21 +37,27 @@ Route::view('/login', 'login.index')->name('login');
 
 Route::middleware('auth')->group( function () {
 
-    Route::middleware('admin')->group( function () {
+    Route::middleware('admin', 'auth')->group( function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
         // Route::get('admin/profile', [AdminController::class, 'profileIndex'])->name('admin.profile');
         Route::get('admin/clients', [AdminController::class, 'clientsIndex'])->name('admin.clients');
         //работа с товарами
+
         Route::get('admin/products', [AdminController::class, 'productsIndex'])->name('admin.products');
         Route::get('admin/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
         Route::put('admin/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
-
         Route::get('admin/sets/{id}/edit', [AdminController::class, 'editSet'])->name('admin.sets.edit');
         Route::put('admin/sets/{id}', [AdminController::class, 'updateSet'])->name('admin.sets.update');
 
 
         Route::get('/admin/application', [AdminController::class, 'applicationIndex'])->middleware('auth')->name('admin.application');
-        Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->middleware('auth')->name('admin.consultanion');
+
+        // Route::get('/admin/consultations', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
+
+        
+        Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
+        Route::get('/admin/consultation/{id}/edit', [AdminController::class, 'editConsultation'])->name('admin.consultation.edit');
+        Route::put('/admin/consultation/{id}', [AdminController::class, 'updateConsultation'])->name('admin.consultation.update');
 
         //работа с отзывами
         Route::get('/admin/review', [AdminController::class, 'reviewIndex'])->name('admin.review');
