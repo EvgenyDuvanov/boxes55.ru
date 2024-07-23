@@ -58,6 +58,7 @@ Route::middleware('auth')->group( function () {
         Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
         Route::get('/admin/consultation/{id}/edit', [AdminController::class, 'editConsultation'])->name('admin.consultation.edit');
         Route::put('/admin/consultation/{id}', [AdminController::class, 'updateConsultation'])->name('admin.consultation.update');
+        Route::delete('/admin/consultation/{id}', [AdminController::class, 'destroyConsultation'])->name('admin.consultation.destroy');
 
         //работа с отзывами
         Route::get('/admin/review', [AdminController::class, 'reviewIndex'])->name('admin.review');

@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center p-2">Заявки на консультации</h1>
-    
+    <h1 class="text-center p-2">Заявки на консультацию</h1>
+
+    <!-- Таблица заявок -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -18,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($questions as $question)
+            @forelse($questions as $question)
                 <tr>
                     <td>{{ $question->statusLabel }}</td>
                     <td>{{ $question->name }}</td>
@@ -27,10 +28,18 @@
                     <td>{{ $question->created_at->diffForHumans() }}</td>
                     <td>
                         <a href="{{ route('admin.consultation.edit', $question->id) }}" class="btn btn-warning rounded-pill">Редактировать</a>
-                        <a href="#" class="btn btn-danger rounded-pill">Удалить</a>
+                        <form action="{{ route('admin.consultation.destroy', $question->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger rounded-pill" onclick="return confirm('Вы уверены, что хотите удалить эту заявку?')">Удалить</button>
+                        </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">Нет заявок на консультацию</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

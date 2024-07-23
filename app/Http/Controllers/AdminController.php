@@ -131,6 +131,14 @@ class AdminController extends Controller
         return redirect()->route('admin.consultation')->with('success', 'Заявка успешно обновлена');
     }
 
+    public function destroyConsultation($id)
+    {
+        $question = Question::findOrFail($id);
+        $question->delete();
+
+        return redirect()->route('admin.consultation')->with('success', 'Заявка успешно удалена');
+    }
+
     public function reviewIndex(Request $request)
     {
         $filter = $request->input('filter');
