@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\ConsultationStatus;
 
 class CreateQuestionsTable extends Migration
 {
@@ -19,7 +18,7 @@ class CreateQuestionsTable extends Migration
         $table->string('name');
         $table->string('phone');
         $table->enum('status', ['new', 'in_progress', 'closed'])->default('new');
-        $table->text('comment')->nullable();
+        $table->text('comment')->nullable(); 
         $table->timestamps();
     });
     }

@@ -23,7 +23,6 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Flexbox контейнер для имени, телефона и статуса -->
                     <div class="mb-3">
                         <label for="contact" class="form-label">Контакт</label>
                         <div class="d-flex flex-wrap">
@@ -38,7 +37,7 @@
                             <div class="flex-grow-1">
                                 <label for="status" class="form-label">Статус</label>
                                 <select class="form-control" id="status" name="status" required>
-                                    @foreach(App\Enums\ConsultationStatus::select() as $value => $label)
+                                    @foreach(App\Enums\Status::select() as $value => $label)
                                         <option value="{{ $value }}" {{ old('status', $question->status->value) === $value ? 'selected' : '' }}>{{ $label }}</option>
                                     @endforeach
                                 </select>

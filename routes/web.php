@@ -43,18 +43,22 @@ Route::middleware('auth')->group( function () {
         Route::get('admin/clients', [AdminController::class, 'clientsIndex'])->name('admin.clients');
         //работа с товарами
 
+
+        //работа с товарам
         Route::get('admin/products', [AdminController::class, 'productsIndex'])->name('admin.products');
         Route::get('admin/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
         Route::put('admin/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
         Route::get('admin/sets/{id}/edit', [AdminController::class, 'editSet'])->name('admin.sets.edit');
         Route::put('admin/sets/{id}', [AdminController::class, 'updateSet'])->name('admin.sets.update');
 
-
+        //забота с заявками на аренду
         Route::get('/admin/application', [AdminController::class, 'applicationIndex'])->middleware('auth')->name('admin.application');
+        Route::get('/admin/application/{id}/edit', [AdminController::class, 'editApplication'])->name('admin.application.edit');
+        Route::put('/admin/application/{id}', [AdminController::class, 'updateApplication'])->name('admin.application.update');
+        Route::delete('/admin/application/{id}', [AdminController::class, 'destroyApplication'])->name('admin.application.destroy');
+       
 
-        // Route::get('/admin/consultations', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
-
-        
+        //работа с консультациями
         Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
         Route::get('/admin/consultation/{id}/edit', [AdminController::class, 'editConsultation'])->name('admin.consultation.edit');
         Route::put('/admin/consultation/{id}', [AdminController::class, 'updateConsultation'])->name('admin.consultation.update');

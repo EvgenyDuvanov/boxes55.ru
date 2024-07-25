@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('car_model');
-            $table->string('equipment');
+            $table->string('equipment'); 
             $table->date('first_date');
             $table->date('last_date');
             $table->decimal('price', 8, 2)->nullable();

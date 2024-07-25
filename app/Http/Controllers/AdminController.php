@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ConsultationStatus;
+use App\Enums\Status;
+use App\Models\Application;
 use App\Models\Product;
 use App\Models\Question;
 use App\Models\Review;
@@ -93,12 +95,56 @@ class AdminController extends Controller
 
     public function applicationIndex()
     {
-        return view('admin.application.index');
+        $applications = Application::orderBy('created_at', 'desc')->get();
+        return view('admin.application.index', compact('applications'));
+    }
+
+    public function editApplication($id)
+    {
+        $application = Application::findOrFail($id);
+        $statuses = Status::cases();
+        return view('admin.application.edit', compact('application', 'statuses'));
+    }
+
+    public function updateApplication(Request $request, $id)
+    {
+        $application = Application::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:45',
+            'phone' => 'required|string|max:15',
+            'status' => ['required', Rule::in(array_keys(Status::select()))],
+            'car_model' => 'required|string',
+            'equipment' => 'required|string', 
+            'first_date' => 'required|date',
+            'last_date' => 'required|date|after_or_equal:first_date',
+            'price' => 'nullable|string', 
+        ]);
+
+        $application->name = $request->name;
+        $application->phone = $request->phone;
+        $application->status = $request->status;
+        $application->car_model = $request->car_model;
+        $application->equipment = $request->equipment;
+        $application->first_date = $request->first_date;
+        $application->last_date = $request->last_date;
+        $application->price = $request->price;
+
+        $application->save();
+
+        return redirect()->route('admin.application')->with('success', 'Заявка на аренду успешно обновлена');
+    }
+
+    public function destroyApplication($id)
+    {
+        $question = Application::findOrFail($id);
+        $question->delete();
+
+        return redirect()->route('admin.application')->with('success', 'Заявка на аренду успешно удалена');
     }
 
     public function consultationIndex()
     {
-        // Get all questions ordered by creation date from newest to oldest
         $questions = Question::orderBy('created_at', 'desc')->get();
         return view('admin.consultation.index', compact('questions'));
     }
@@ -106,7 +152,7 @@ class AdminController extends Controller
     public function editConsultation($id)
     {
         $question = Question::findOrFail($id);
-        $statuses = ConsultationStatus::cases();
+        $statuses = Status::cases();
         return view('admin.consultation.edit', compact('question', 'statuses'));
     }
 
@@ -115,15 +161,15 @@ class AdminController extends Controller
         $question = Question::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'status' => ['required', Rule::in(array_keys(ConsultationStatus::select()))], // Проверка наличия в статусах
+            'name' => 'required|string|max:25',
+            'phone' => 'required|string|max:20',
+            'status' => ['required', Rule::in(array_keys(Status::select()))],
             'comment' => 'nullable|string',
         ]);
 
         $question->name = $request->name;
         $question->phone = $request->phone;
-        $question->status = $request->status; // Присваиваем значение, которое является строкой
+        $question->status = $request->status;
         $question->comment = $request->comment;
 
         $question->save();
