@@ -6,7 +6,6 @@
 <div class="container">
     <h1 class="text-center p-2">Заявки на консультацию</h1>
 
-    <!-- Таблица заявок -->
     <table class="table table-striped">
         <thead>
             <tr>

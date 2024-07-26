@@ -41,8 +41,7 @@ Route::middleware('auth')->group( function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
         // Route::get('admin/profile', [AdminController::class, 'profileIndex'])->name('admin.profile');
         Route::get('admin/clients', [AdminController::class, 'clientsIndex'])->name('admin.clients');
-        //работа с товарами
-
+        Route::delete('/admin/clients/{id}', [AdminController::class, 'destroyClients'])->name('admin.clients.destroy');
 
         //работа с товарам
         Route::get('admin/products', [AdminController::class, 'productsIndex'])->name('admin.products');
@@ -57,7 +56,6 @@ Route::middleware('auth')->group( function () {
         Route::put('/admin/application/{id}', [AdminController::class, 'updateApplication'])->name('admin.application.update');
         Route::delete('/admin/application/{id}', [AdminController::class, 'destroyApplication'])->name('admin.application.destroy');
        
-
         //работа с консультациями
         Route::get('/admin/consultation', [AdminController::class, 'consultationIndex'])->name('admin.consultation');
         Route::get('/admin/consultation/{id}/edit', [AdminController::class, 'editConsultation'])->name('admin.consultation.edit');

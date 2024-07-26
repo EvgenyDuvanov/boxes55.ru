@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ConsultationStatus;
 use App\Enums\Status;
 use App\Models\Application;
 use App\Models\Product;
 use App\Models\Question;
 use App\Models\Review;
 use App\Models\Set;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +30,16 @@ class AdminController extends Controller
 
     public function clientsIndex()
     {
-        return view('admin.clients.index');
+        $users = User::all();
+        return view('admin.clients.index', compact('users'));
+    }
+
+    public function destroyClients($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.clients')->with('success', 'Пользователь успешно удален');
     }
 
     public function productsIndex()
