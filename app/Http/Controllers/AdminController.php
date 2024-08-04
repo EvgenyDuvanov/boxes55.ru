@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\Review;
 use App\Models\Set;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -19,9 +20,22 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
-        return view('admin.index');
+    public function index()
+    {
+        $totalUsers = User::count();
+        $userMounth = User::where('created_at', '>=', Carbon::now()->subDays(30))->count();
+
+        $totalApp = Application::count();
+        $newApp = Application::where('status', Status::NEW->value)->count();
+        $inProgressApp = Application::where('status', Status::IN_PROGRESS->value)->count();
+        $closedApp = Application::where('status', Status::CLOSED->value)->count();
+
+       return view('admin.index', compact('totalUsers', 'userMounth', 'totalApp', 'newApp', 'inProgressApp', 'closedApp'));
     }
+
+    // public function index() {
+    //     return view('admin.index');
+    // }
 
     public function profileIndex()
     {
@@ -40,6 +54,11 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('admin.clients')->with('success', 'Пользователь успешно удален');
+    }
+
+    public function contractsIndex()
+    {
+        return view('admin.contracts.index');
     }
 
     public function productsIndex()

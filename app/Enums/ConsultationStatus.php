@@ -26,24 +26,3 @@ enum ConsultationStatus: string
         };
     }
 }
-
-// app/Enums/ConsultationStatus.php
-
-// namespace App\Enums;
-
-// enum ConsultationStatus: string
-// {
-//     case NEW = 'new';
-//     case IN_PROGRESS = 'in_progress';
-//     case CLOSED = 'closed';
-
-//     public static function select(): array
-//     {
-//         return [
-//             self::NEW => 'Новая',
-//             self::IN_PROGRESS => 'В процессе',
-//             self::CLOSED => 'Закрыта',
-//         ];
-//     }
-// }
-

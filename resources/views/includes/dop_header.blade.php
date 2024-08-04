@@ -24,10 +24,13 @@
                                 <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Панель администратора</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('admin.products') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('admin.clients') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Клиенты</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.products') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
+                                <a href="{{ route('admin.contracts') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Договоры</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.application') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Завки на аренду</a>

@@ -39,9 +39,13 @@ Route::middleware('auth')->group( function () {
 
     Route::middleware('admin', 'auth')->group( function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        
         // Route::get('admin/profile', [AdminController::class, 'profileIndex'])->name('admin.profile');
         Route::get('admin/clients', [AdminController::class, 'clientsIndex'])->name('admin.clients');
         Route::delete('/admin/clients/{id}', [AdminController::class, 'destroyClients'])->name('admin.clients.destroy');
+
+        Route::get('admin/contracts', [AdminController::class, 'contractsIndex'])->name('admin.contracts');
+
 
         //работа с товарам
         Route::get('admin/products', [AdminController::class, 'productsIndex'])->name('admin.products');

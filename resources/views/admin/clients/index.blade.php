@@ -36,7 +36,7 @@
                         <form action="{{ route('admin.clients.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger rounded-pill" onclick="return confirm('Вы уверены, что хотите удалить эту заявку?')">Удалить</button>
+                            <button type="submit" class="btn btn-danger rounded-pill" onclick="return confirm('Вы уверены, что хотите удалить данные об этом пользователе?')">Удалить</button>
                         </form>
                     </td>
                 </tr>
