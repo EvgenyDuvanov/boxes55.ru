@@ -33,10 +33,6 @@ class AdminController extends Controller
        return view('admin.index', compact('totalUsers', 'userMounth', 'totalApp', 'newApp', 'inProgressApp', 'closedApp'));
     }
 
-    // public function index() {
-    //     return view('admin.index');
-    // }
-
     public function profileIndex()
     {
         return view('admin.profile.index');
@@ -54,11 +50,6 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('admin.clients')->with('success', 'Пользователь успешно удален');
-    }
-
-    public function contractsIndex()
-    {
-        return view('admin.contracts.index');
     }
 
     public function productsIndex()
@@ -300,7 +291,4 @@ class AdminController extends Controller
 
         return redirect()->route('admin.review')->with('success', 'Отзыв был успешно удален!');
     }
-
-
-
 }

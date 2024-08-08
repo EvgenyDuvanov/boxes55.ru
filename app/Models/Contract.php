@@ -17,6 +17,8 @@ class Contract extends Model
         'birth_date',
         'phone',
         'passport',
+        'passport_date',
+        'passport_by',
         'address',
         'first_date',
         'last_date',

@@ -14,11 +14,11 @@ enum StatusContract: string
     public static function select(): array
     {
         return [
-            self::NEW->value => 'Создан', 
+            self::NEW->value => 'Новый',
             self::MODERATION->value => 'На рассмотрении',
             self::APPROVED->value => 'Одобрен',
             self::REFUSAL->value => 'Не одобрен',
-            self::IN_PROGRESS => 'В процессе',
+            self::IN_PROGRESS->value => 'В процессе',
             self::CLOSED->value => 'Закрыт',
         ];
     }
@@ -26,17 +26,12 @@ enum StatusContract: string
     public function label(): string
     {
         return match ($this) {
-            self::NEW->value => 'Создан',
-            self::MODERATION->value => 'На рассмотрении',
-            self::APPROVED->value => 'Одобрен',
-            self::REFUSAL->value => 'Не одобрен',
+            self::NEW => 'Новый',
+            self::MODERATION => 'На рассмотрении',
+            self::APPROVED => 'Одобрен',
+            self::REFUSAL => 'Не одобрен',
             self::IN_PROGRESS => 'В процессе',
-            self::CLOSED->value => 'Закрыт',
+            self::CLOSED => 'Закрыт',
         };
-    }
-
-    public static function values(): array
-    {
-        return array_column(self::cases(), 'value');
     }
 }
