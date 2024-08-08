@@ -39,7 +39,6 @@ Route::middleware('auth')->group( function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin');
 
         // Route::get('admin/profile', [AdminController::class, 'profileIndex'])->name('admin.profile');
-
         Route::get('clients', [AdminController::class, 'clientsIndex'])->name('admin.clients');
         Route::delete('clients/{id}', [AdminController::class, 'destroyClients'])->name('admin.clients.destroy');
 
