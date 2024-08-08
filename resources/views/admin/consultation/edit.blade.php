@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
         <div class="col-md-8">
             <div class="card p-4">
-                <h1 class="text-center p-2">Редактирование заявки 123</h1>
+                <h1 class="text-center p-2">Редактирование заявки</h1>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="comment" class="form-label">Комментарий</label>
+                        <label for="comment" class="form-label">Комментарий123</label>
                         <textarea class="form-control" id="comment" name="comment">{{ old('comment', $question->comment) }}</textarea>
                     </div>
 
