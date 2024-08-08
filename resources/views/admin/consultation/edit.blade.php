@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
         <div class="col-md-8">
             <div class="card p-4">
-                <h1 class="text-center p-2">Редактирование заявки</h1>
+                <h1 class="text-center p-2">Редактирование заявки 123</h1>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
