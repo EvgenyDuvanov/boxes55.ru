@@ -51,10 +51,6 @@ Route::middleware('auth')->group( function () {
         Route::put('contracts/{contract}', [ContractController::class, 'update'])->name('admin.contracts.update');
         Route::delete('contracts/{contract}', [ContractController::class, 'destroy'])->name('admin.contracts.destroy');
 
-        // Route::get('contracts/{contract}/download', [ContractController::class, 'downloadWord'])->name('admin.contracts.download');
-
-
-
         //работа с товарам
         Route::get('products', [AdminController::class, 'productsIndex'])->name('admin.products');
         Route::get('products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
@@ -88,10 +84,6 @@ Route::middleware('auth')->group( function () {
         Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
     });
 });
-
-
-// Маршрут для отображения формы входа
-
 
 // Маршрут для обработки входа пользователя
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');

@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="comment" class="form-label">Комментарий123</label>
+                        <label for="comment" class="form-label">Комментарий</label>
                         <textarea class="form-control" id="comment" name="comment">{{ old('comment', $question->comment) }}</textarea>
                     </div>
 
