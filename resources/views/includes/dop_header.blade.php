@@ -3,11 +3,60 @@
         <div class="container-fluid" style="padding-left: 30px; padding-right: 30px;">
             <div class="d-flex flex-wrap">
                 <a class="navbar-brand" href="{{ url('') }}">
-                    <img src="{{ url('image/log.png') }}" alt="Логотип" height="80">
+                    <img src="{{ url('image/log.png') }}" alt="Логотип" height="70">
                 </a>
             </div>
+
             @auth
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <div class="d-none d-md-flex flex-row">
+                <ul class="navbar-nav flex-row">
+                    @if(Auth::user()->is_admin)
+                        <li class="nav-item">
+                            <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Дашборд</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.products') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.clients') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Пользователи</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.contracts') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Договоры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.application') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Заявки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.consultation') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Консультации</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.review') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Отзывы</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('user') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Мой данные</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Заявки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Калькулятор</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Отзывы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Обратная связь</a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+
+            
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -21,19 +70,19 @@
 
                         @if(Auth::user()->is_admin)
                             <li class="nav-item">
-                                <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Панель администратора</a>
+                                <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Дашборд</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.products') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.clients') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Клиенты</a>
+                                <a href="{{ route('admin.clients') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Пользователи</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.contracts') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Договоры</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.application') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Завки на аренду</a>
+                                <a href="{{ route('admin.application') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Заявки</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.consultation') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Консультации</a>
@@ -60,7 +109,6 @@
                             <li class="nav-item">
                                 <a href="" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Обратная связь</a>
                             </li>
-
                         @endif
                         
                         <li class="nav-item">
