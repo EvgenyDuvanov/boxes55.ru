@@ -130,11 +130,8 @@
         }
     }
 
-    // Set the active link on page load
     window.addEventListener('load', setActiveLink);
-    // Set the active link on hash change (when user navigates)
     window.addEventListener('hashchange', setActiveLink);
-    // Set the active link on resize (when window is resized)
     window.addEventListener('resize', setActiveLink);
 </script>
 
