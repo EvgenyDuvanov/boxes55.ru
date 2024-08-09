@@ -12,7 +12,7 @@
                 <ul class="navbar-nav flex-row">
                     @if(Auth::user()->is_admin)
                         <li class="nav-item">
-                            <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Дашборд</a>
+                            <a href="{{ route('admin') }}" class="nav-link px-2 text-yellow" onclick="closeOffcanvas()">Даш</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.products') }}" class="nav-link px-2 text-white" onclick="closeOffcanvas()">Оборудование</a>
